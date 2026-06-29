@@ -84,6 +84,9 @@ msgstr "发送文件："
 msgid "Sending clipboard text:"
 msgstr "发送剪贴板文本："
 
+msgid "Receiving clipboard text:"
+msgstr "接收剪贴板文本："
+
 msgid "Sending clipboard image"
 msgstr "发送剪贴板图片"
 

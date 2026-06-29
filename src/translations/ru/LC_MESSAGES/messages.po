@@ -84,6 +84,9 @@ msgstr "Отправка файла:"
 msgid "Sending clipboard text:"
 msgstr "Отправка текста из буфера обмена:"
 
+msgid "Receiving clipboard text:"
+msgstr "Получение текста из буфера обмена:"
+
 msgid "Sending clipboard image"
 msgstr "Отправка изображения из буфера обмена"
 

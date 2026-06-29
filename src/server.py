@@ -165,7 +165,7 @@ class Server:
                 return Result.error(msg=_('iPhone clipboard is empty'))
             success, msg = clipboard.set_text(text)
             if success:
-                self.notifier.notify("📝" + _('Sending clipboard text:'), text)
+                self.notifier.notify("📝" + _('Receiving clipboard text:'), text)
             else:
                 self.notifier.notify("⚠️" + _('Error setting clipboard:'), msg)
             return Result.success(msg=_('Send successful')) if success else Result.error(msg=msg)

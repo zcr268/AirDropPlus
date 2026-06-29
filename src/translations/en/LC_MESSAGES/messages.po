@@ -48,6 +48,9 @@ msgstr "Sending file:"
 msgid "Sending clipboard text:"
 msgstr "Sending clipboard text:"
 
+msgid "Receiving clipboard text:"
+msgstr "Receiving clipboard text:"
+
 msgid "Sending clipboard image"
 msgstr "Sending clipboard image"
 

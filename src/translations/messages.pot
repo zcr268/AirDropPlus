@@ -105,6 +105,10 @@ msgid "Sending clipboard text:"
 msgstr ""
 
 #: server.py
+msgid "Receiving clipboard text:"
+msgstr ""
+
+#: server.py
 msgid "Sending clipboard image"
 msgstr ""
 
