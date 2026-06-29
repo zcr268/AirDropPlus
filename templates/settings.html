@@ -274,7 +274,6 @@
                 <div class="row stacked">
                     <div class="row-text">
                         <label class="row-label" for="language">{{ _('Language') }}</label>
-                        <div class="row-desc warn">{{ _('Requires restart to take effect') }}</div>
                     </div>
                     <div class="control">
                         <select id="language" name="language">
@@ -343,6 +342,7 @@
     <div id="toast" class="toast"></div>
     <script>
         let toastTimer = null;
+        let currentLanguage = null;
         function showToast(message, isError) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -379,6 +379,7 @@
                         document.getElementById('basicNotifier').checked = config.basic_notifier;
                         document.getElementById('showIcon').checked = config.show_icon;
                         document.getElementById('language').value = config.language || 'en';
+                        currentLanguage = config.language || 'en';
                     }
                 })
               .catch(error => {
@@ -422,6 +423,11 @@
             })
             .then(data => {
                 if (data.success) {
+                    if (language !== currentLanguage) {
+                        // 语言已变更，刷新页面让服务端用新语言重新渲染
+                        location.reload();
+                        return;
+                    }
                     showToast('{{ _("Settings saved!") }}', false);
                 } else {
                     showToast('{{ _("Failed to save settings") }}: ' + data.msg, true);
