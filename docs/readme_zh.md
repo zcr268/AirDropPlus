@@ -103,7 +103,7 @@ Bonjour 让你通过 `hostname.local` 而非 IP 地址访问 PC。最新版 Bonj
 
 ### 4. 在 iPhone 上获取快捷指令
 
-快捷指令版本：**1.5.4** —— https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
+快捷指令版本：**1.5.3** —— https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
 
 <div align="center"><img src="images/shortcut_QRcode.png" alt="快捷指令二维码" width="35%"></div>
 

@@ -103,7 +103,7 @@ Right-click the tray icon and open **Settings** to configure the key, port, and 
 
 ### 4. Get the iOS Shortcut
 
-Shortcut version: **1.5.4** — https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
+Shortcut version: **1.5.3** — https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
 
 <div align="center"><img src="docs/images/shortcut_QRcode.png" alt="Shortcut QR code" width="35%"></div>
 
