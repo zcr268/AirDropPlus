@@ -185,3 +185,9 @@ msgstr "深色"
 
 msgid "If Windows notifications do not work, enable the basic notification style."
 msgstr "如果 Windows 通知不生效，请开启基本通知样式。"
+
+msgid "Browse"
+msgstr "浏览"
+
+msgid "Error selecting folder"
+msgstr "选择文件夹出错"

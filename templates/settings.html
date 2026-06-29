@@ -220,6 +220,29 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
         .control-narrow { max-width: 220px; }
+        /* path picker: input + browse button */
+        .path-group {
+            display: flex;
+            gap: 8px;
+        }
+        .path-group input { flex: 1; min-width: 0; }
+        .btn-browse {
+            flex-shrink: 0;
+            padding: 0 16px;
+            font-size: 14px;
+            font-weight: 500;
+            background: var(--input-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+        .btn-browse:hover {
+            background: var(--bg);
+            border-color: var(--primary);
+            color: var(--text);
+        }
         /* toggle switch */
         .switch {
             position: relative;
@@ -358,7 +381,10 @@
                         <label class="row-label" for="savePath">{{ _('Save Path') }}</label>
                     </div>
                     <div class="control">
-                        <input type="text" id="savePath" name="savePath">
+                        <div class="path-group">
+                            <input type="text" id="savePath" name="savePath">
+                            <button type="button" class="btn-browse" onclick="browseFolder()">{{ _('Browse') }}</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,6 +464,20 @@
               .catch(error => {
                     console.error('{{ _("Error getting configuration") }}:', error);
                     showToast('{{ _("Error getting configuration") }}', true);
+                });
+        }
+
+        function browseFolder() {
+            fetch('/settings/select_folder')
+              .then(response => response.json())
+              .then(data => {
+                    if (data.success && data.data && data.data.path) {
+                        document.getElementById('savePath').value = data.data.path;
+                    }
+                })
+              .catch(error => {
+                    console.error('{{ _("Error selecting folder") }}:', error);
+                    showToast('{{ _("Error selecting folder") }}', true);
                 });
         }
 

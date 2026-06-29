@@ -198,6 +198,34 @@ class Server:
             }
             return Result.success(data=config_dict)
 
+        @self.blueprint.route('/settings/select_folder')
+        def select_folder():
+            localhost_result = self.check_localhost(request.remote_addr)
+            if localhost_result is not None:
+                return localhost_result
+            # tkinter 必须在独立线程里创建自己的窗口，避免与 pystray 占用的主线程冲突
+            result_holder = {'path': None}
+
+            def open_dialog():
+                import tkinter
+                from tkinter import filedialog
+                root = tkinter.Tk()
+                root.withdraw()
+                root.attributes('-topmost', True)
+                selected = filedialog.askdirectory(title=_('Save Path'))
+                root.destroy()
+                result_holder['path'] = selected
+
+            t = threading.Thread(target=open_dialog)
+            t.start()
+            t.join()
+            path = result_holder['path']
+            if not path:
+                # 用户取消选择
+                return Result.success(data={'path': None})
+            # 统一为 Windows 风格路径分隔符
+            return Result.success(data={'path': os.path.normpath(path)})
+
         @self.blueprint.route('/settings/configs', methods=['POST'])
         def set_configs():
             localhost_result = self.check_localhost(request.remote_addr)

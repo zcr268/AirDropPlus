@@ -185,3 +185,9 @@ msgstr "Тёмная"
 
 msgid "If Windows notifications do not work, enable the basic notification style."
 msgstr "Если уведомления Windows не работают, включите базовый стиль уведомлений."
+
+msgid "Browse"
+msgstr "Обзор"
+
+msgid "Error selecting folder"
+msgstr "Ошибка выбора папки"
