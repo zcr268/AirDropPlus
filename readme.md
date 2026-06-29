@@ -7,9 +7,9 @@ A file transfer and clipboard synchronization tool between Windows and iOS devic
 # Buy the author a coffee
 <div style="text-align:center;">
     <p>Alipay</p>
-    <img src="pic/alipay.png" alt="Image" style="width: 15%;">
+    <img src="docs/images/alipay.png" alt="Image" style="width: 15%;">
     <p>WechatPay</p>
-    <img src="pic/wechatpay.png" alt="Image" style="width: 15%;">
+    <img src="docs/images/wechatpay.png" alt="Image" style="width: 15%;">
 </div>
 
 # Requirements
@@ -46,7 +46,7 @@ AirDropPlus/
 │   ├── static/          # icon.ico
 │   ├── templates/       # settings.html
 │   └── translations/    # gettext translations (en/ru/zh)
-├── pic/                 # README images
+├── docs/                # README images and API reference
 ├── api/                 # Bruno API test collection
 ├── requirements.txt
 ├── readme.md / readme_zh.md
@@ -79,13 +79,13 @@ The build output is generated under `src/dist/`.
     - Bonjour allows you to access Windows using the 'hostname.local' instead of an IP address.
     - The latest version of Bonjour may encounter issues accessing 'hostname.local'. Please use an older version instead.
     <div style="text-align:center;">
-        <img src="pic/windows_device_name.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/windows_device_name.png" alt="Image" style="width: 35%;">
     </div>
 2. Start AirDropPlus.exe
 
     Start 'AirDropPlus.exe', and when prompted with the following pop-up, please click to allow.
     <div style="text-align:center;">
-      <img src="pic/network.png" alt="Image" style="width: 35%;">
+      <img src="docs/images/network.png" alt="Image" style="width: 35%;">
     </div>
 3. Set up AirdropPlus
     - Right click on the tray icon and open Settings to configure.
@@ -93,28 +93,28 @@ The build output is generated under `src/dist/`.
    version: 1.5.4
    https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
       <div style="text-align:center;">
-       <img src="pic/shortcut_QRCode.png" alt="Image" style="width: 35%;">
+       <img src="docs/images/shortcut_QRcode.png" alt="Image" style="width: 35%;">
    </div>
 5. Set up the shortcut:
    - host：'hostname.local'
    - port：The same port as that in the PC-side settings
    - key：The same key as that in the PC-side settings
    <div style="text-align:center;">
-       <img src="pic/shortcut_conf.png" alt="Image" style="width: 35%;">
+       <img src="docs/images/shortcut_conf.png" alt="Image" style="width: 35%;">
    </div>
    If your PC does not support access via 'hostname.local', you can use the PC's IP address instead. Fill in the combinations of WiFi names and PC IP addresses for all your scenarios in the list below.
    <div style="text-align:center;">
-       <img src="pic/shortcut_conf_2.png" alt="Image" style="width: 35%;">
+       <img src="docs/images/shortcut_conf_2.png" alt="Image" style="width: 35%;">
    </div>
 6. Set the trigger method of the shortcut (choose one of the three methods):
    1. Set it up in 'Settings-Accessibility-Touch-BackTap' to trigger with a double-tap on the back of the iPhone.
    2. The iPhone 15 Pro series can set it to trigger with the side button.
       <div style="text-align:center;">
-        <img src="pic/action_button.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/action_button.png" alt="Image" style="width: 35%;">
       </div>
    3. Newer versions of iOS can add 'AirDrop Plus' shortcuts to the Control Center.
       <div style="text-align:center;">
-        <img src="pic/control_centor.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/control_centor.png" alt="Image" style="width: 35%;">
       </div>
 7. Remove the limit on the number of files sent via Shortcuts (Not performing this setting will cause an error when sending multiple images)
   iPhone - Settings - App - Shortcuts - Advanced - Allow Sharing Large Amounts of Data
@@ -122,30 +122,30 @@ The build output is generated under `src/dist/`.
     - **Send files**:
       Add the 'AirDrop Plus' shortcut to the file sharing menu.
       <div style="text-align:center;">
-        <img src="pic/edit_actions.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/edit_actions.png" alt="Image" style="width: 35%;">
       </div>
       <div style="text-align:center;">
-        <img src="pic/edit_actions_2.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/edit_actions_2.png" alt="Image" style="width: 35%;">
       </div>
       Tap the 'AirDrop Plus' shortcut from the file sharing menu.
       <div style="text-align:center;">
-        <img src="pic/send_file.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/send_file.png" alt="Image" style="width: 35%;">
       </div>
       PC will receive the file and show a notification.
       <div style="text-align:center;">
-        <img src="pic/send_file_pc.png" alt="Image" style="width: 35%;">
+        <img src="docs/images/send_file_pc.png" alt="Image" style="width: 35%;">
       </div>
    - **Send texts**:
      1. Copy the text which you want to send.
      2. Trigger the shortcut, then tap the 'Send' option.
      <div style="text-align:center;">
-       <img src="pic/shortcut_menu.png" alt="Image" style="width: 40%;">
+       <img src="docs/images/shortcut_menu.png" alt="Image" style="width: 40%;">
      </div>
    - **Receive files or texts**: 
      1. Trigger the shortcut
      2. Tap the 'Receive' option to receive file or text from PC's clipboard.
      <div style="text-align:center;">
-       <img src="pic/shortcut_menu.png" alt="Image" style="width: 40%;">
+       <img src="docs/images/shortcut_menu.png" alt="Image" style="width: 40%;">
      </div>
 
 # Issues and solutions
@@ -155,120 +155,16 @@ The build output is generated under `src/dist/`.
 3. Ensure that the hostname set in the shortcut is consistent with **the PC's hostname** (the hostname should not be in Chinese and should not contain '-'). You can also try changing **hostname.local** to **IP address**.
 4. Check if the PC's firewall is blocking the port set in the **config.ini** file. Remove all entries related to AirDropPlus and restart AirDropPlus. After the restart, please allow the pop-up for network requests.
     <div style="text-align:center;">
-      <img src="pic/firewall.png" alt="Image" style="width: 50%;">
-      <img src="pic/network.png" alt="Image" style="width: 35%;">
+      <img src="docs/images/firewall.png" alt="Image" style="width: 50%;">
+      <img src="docs/images/network.png" alt="Image" style="width: 35%;">
     </div>
 
 ### 2. No notification after startup, but the process is running in the background:
 1. It's possible that the PC's system version is too old to support interactive notifications. Try changing to basic notifications in the **config.ini** file.
     <div style="text-align:center;">
-      <img src="pic/basic_notify.png" alt="Image" style="width: 40%;">
+      <img src="docs/images/basic_notify.png" alt="Image" style="width: 40%;">
     </div>
 
 # API
-## 0. Request Header Parameters
-| Arg Name        | Type   | Description                                                                                                                                                     |
-|-----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ShortcutVersion | String | The version of the shortcut. It must match the 'version' in the config.ini file.                                                                                |
-| Authorization   | String | The key. It must match the first two segments of the 'key' in the config.ini file. For example, if the config.ini file has a version 1.5.1, this should be 1.5. |
 
-## 1. Send File
-> Send a file from the mobile device to the PC.
-### URL
-[POST] /file
-
-Request Body: Form
-
-| Arg Name | Type | Description      |
-|----------|------|------------------|
-| file     | File | The File to Send |
-
-### Return
-- Return Type: JSON
-- Return Content:
-    ```json
-    {
-        "success": true,
-        "msg": "发送成功",
-        "data": null
-    }
-    ```
-## 2. Retrieve File
-> Retrieve a file on the PC
-### URL
-[GET] /file/[path]
-
-| Arg Name | Type   | Description                      |
-|----------|--------|----------------------------------|
-| path     | String | Base64 encoding of the file path |
-### Return
-- Return Type: File
-
-## 3. Send Clipboard
-> Send the clipboard to PC
-### URL
-[POST] /clipboard
-### Request Parameters
-- Request Body: Form
-
-| Arg Name  | Type   | Description              |
-|-----------|--------|--------------------------|
-| clipboard | String | Mobile Clipboard Content |
-
-### Return
-- Return Type: JSON
-- Return Content:
-    ```json
-    {
-        "success": true,
-        "msg": "发送成功",
-        "data": null
-    }
-    ```
-## 4. Retrieve Clipboard Content
-> Retrieve the Clipboard Content on PC
-### URL
-[GET] /clipboard
-### Return
-- Return Type: JSON
-- Return Content: 
-  - When the Clipboard Contains Text:
-    ```json
-    {
-        "success": true,
-        "msg": "",
-        "data": {
-          "type": "text",
-          "data": "clipboard_text"
-        } 
-    }
-    ```
-  - When the Clipboard Contains File:
-      ```json
-      {
-          "success": true,
-          "msg": "",
-          "data": {
-            "type": "file",
-            "data": ["file1_path_base64", "file2_path_base64", "file3_path_base64"]
-          }
-      }
-      ```
-  - When the Clipboard Contains Image:
-      ```json
-      {
-          "success": true,
-          "msg": "",
-          "data": {
-            "type": "img",
-            "data": "img_base64_code"
-          }
-      }
-      ```
-## 5. Test
-> Test Connection
-### URL
-[GET] /
-### Return
-- Return Type: Text
-- Return Content: Hello world!
+See [docs/api.md](docs/api.md) for the full HTTP API reference.
