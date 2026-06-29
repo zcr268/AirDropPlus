@@ -16,7 +16,7 @@ A file transfer and clipboard synchronization tool between Windows and iOS devic
 
 ```
 flask==3.0.0
-flask-babel==4.0.0
+Babel==2.14.0      # build-time only: pybabel extract/update/compile
 pillow==10.1.0
 pystray==0.19.5
 pyinstaller==6.2.0
@@ -24,11 +24,51 @@ windows-toasts==1.3.1
 pyperclip==1.8.2
 ```
 
+Install with:
+
+```bash
+pip install -r requirements.txt
+```
+
+# Project Structure
+
+```
+AirDropPlus/
+├── src/                 # All source code, config and resources
+│   ├── AirDropPlus.py   # Entry point
+│   ├── server.py        # Flask server and routes
+│   ├── config.py        # Config loading / saving
+│   ├── i18n.py          # gettext-based i18n
+│   ├── clipboard.py notifier.py result.py utils.py
+│   ├── build.py         # PyInstaller packaging script
+│   ├── babel.cfg        # pybabel extraction config
+│   ├── config/          # config.ini (local) + config.ini.example (template)
+│   ├── static/          # icon.ico
+│   ├── templates/       # settings.html
+│   └── translations/    # gettext translations (en/ru/zh)
+├── pic/                 # README images
+├── api/                 # Bruno API test collection
+├── requirements.txt
+├── readme.md / readme_zh.md
+└── LICENSE
+```
+
+# Run from Source
+
+```bash
+pip install -r requirements.txt
+python src/AirDropPlus.py
+```
+
+On first run, copy `src/config/config.ini.example` to `src/config/config.ini` (the app reads `src/config/config.ini`).
+
 # Packaging
 
 ```bash
-python build.py
+python src/build.py
 ```
+
+The build output is generated under `src/dist/`.
 
 # Usage
 0. Network

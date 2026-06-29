@@ -15,21 +15,60 @@
 # 依赖
 
 ```
-python==3.10.6
 flask==3.0.0
-psutil==5.9.6
-pyinstaller==6.2.0
-windows_toasts==1.3.1
+Babel==2.14.0      # 仅构建期需要：pybabel extract/update/compile
 pillow==10.1.0
-pyperclip~=1.8.2
 pystray==0.19.5
+pyinstaller==6.2.0
+windows-toasts==1.3.1
+pyperclip==1.8.2
 ```
+
+安装依赖：
+
+```bash
+pip install -r requirements.txt
+```
+
+# 项目结构
+
+```
+AirDropPlus/
+├── src/                 # 全部源代码、配置与资源
+│   ├── AirDropPlus.py   # 程序入口
+│   ├── server.py        # Flask 服务与路由
+│   ├── config.py        # 配置读取 / 保存
+│   ├── i18n.py          # 基于 gettext 的国际化
+│   ├── clipboard.py notifier.py result.py utils.py
+│   ├── build.py         # PyInstaller 打包脚本
+│   ├── babel.cfg        # pybabel 文案抽取配置
+│   ├── config/          # config.ini（本地）+ config.ini.example（模板）
+│   ├── static/          # icon.ico
+│   ├── templates/       # settings.html
+│   └── translations/    # gettext 翻译（en/ru/zh）
+├── pic/                 # README 图片
+├── api/                 # Bruno API 测试集合
+├── requirements.txt
+├── readme.md / readme_zh.md
+└── LICENSE
+```
+
+# 从源码运行
+
+```bash
+pip install -r requirements.txt
+python src/AirDropPlus.py
+```
+
+首次运行前，将 `src/config/config.ini.example` 复制为 `src/config/config.ini`（程序读取 `src/config/config.ini`）。
 
 # 打包
 
 ```bash
-python build.py
+python src/build.py
 ```
+
+打包产物生成在 `src/dist/` 目录下。
 
 # 使用
 0. 网络 

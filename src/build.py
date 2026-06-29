@@ -2,6 +2,11 @@ import os
 import shutil
 import subprocess
 
+# 切换到本脚本所在目录（src/），使下方所有相对路径（translations、config、
+# static、templates）无论从哪个工作目录调用都能正确解析。
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
 def build():
     # Clean previous build
     if os.path.exists('dist'):
