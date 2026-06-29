@@ -140,3 +140,6 @@ msgstr "Browse"
 
 msgid "Error selecting folder"
 msgstr "Error selecting folder"
+
+msgid "Generate random key"
+msgstr "Generate random key"

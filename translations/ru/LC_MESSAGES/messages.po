@@ -191,3 +191,6 @@ msgstr "Обзор"
 
 msgid "Error selecting folder"
 msgstr "Ошибка выбора папки"
+
+msgid "Generate random key"
+msgstr "Сгенерировать случайный ключ"
