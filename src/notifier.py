@@ -35,7 +35,7 @@ class Notifier:
         :return: None
         """
         if self.use_basic_notifier:
-            self.notify(_('Received file:'), filename)
+            self.notify("📥 " + _('Received file:'), filename)
             return
 
         def button_cb(args: ToastActivatedEventArgs):
@@ -48,15 +48,15 @@ class Notifier:
             elif action == 'copy':
                 success, e = clipboard.set_file(path)
                 if not success:
-                    self.notify("⚠️" + _("Clipboard setting error"), e)
+                    self.notify("⚠️ " + _("Clipboard setting error"), e)
 
         self.clear_toasts()
-        toast = Toast([f"{_('Received file:')} {filename}"])
+        toast = Toast([f"📥 {_('Received file:')} {filename}"])
         file_path = os.path.join(folder, new_filename)
         if utils.is_image_file(file_path):
             toast.AddImage(ToastDisplayImage.fromPath(file_path))
-        toast.AddAction(ToastButton("📁" + _("Folder"), arguments='select'))
-        toast.AddAction(ToastButton("🖼︎" + _("Open"), arguments='open'))
-        toast.AddAction(ToastButton("✂" + _("Copy"), arguments='copy'))
+        toast.AddAction(ToastButton("📁 " + _("Folder"), arguments='select'))
+        toast.AddAction(ToastButton("🖼️ " + _("Open"), arguments='open'))
+        toast.AddAction(ToastButton("✂️ " + _("Copy"), arguments='copy'))
         toast.on_activated = button_cb
         self.toaster.show_toast(toast)

@@ -27,7 +27,7 @@ notifier = Notifier(config.basic_notifier)
 
 def create_icon():
     def on_exit(icon, item):
-        notifier.notify(_('AirDrop Plus'), _('Exit'))
+        notifier.notify(_('AirDrop Plus'), "👋 " + _('Exit'))
         icon.stop()
         os.kill(os.getpid(), signal.SIGINT)
 
@@ -35,9 +35,9 @@ def create_icon():
         url = f"http://localhost:{config.port}/settings"
         try:
             webbrowser.open(url)
-            notifier.notify(_('AirDrop Plus'), _('Opened localhost in default browser'))
+            notifier.notify(_('AirDrop Plus'), "🌐 " + _('Opened localhost in default browser'))
         except Exception as e:
-            notifier.notify(_('AirDrop Plus'), _('Failed to open browser:') + str(e))
+            notifier.notify("⚠️ " + _('AirDrop Plus'), _('Failed to open browser:') + str(e))
 
     menu = (
         MenuItem(text=_('Settings'), action=on_web_config),
@@ -64,9 +64,9 @@ def start_server() -> tuple[bool, str]:
 if __name__ == '__main__':
     flag, msg = start_server()
     if flag:
-        notifier.notify(_('Started'), msg)
+        notifier.notify("🚀 " + _('Started'), msg)
     else:
-        notifier.notify(_('Start failed'), msg)
+        notifier.notify("⚠️ " + _('Start failed'), msg)
         sys.exit()
     if config.show_icon:
         create_icon()
