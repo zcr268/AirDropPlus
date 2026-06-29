@@ -28,6 +28,3 @@ Desktop.ini
 # 用户本地配置（含隐私数据），仅跟踪 config.ini.example 模板
 src/config/config.ini
 src/config/config.ini.devbak
-
-# AI Agent
-CLAUDE.md
