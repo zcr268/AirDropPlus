@@ -4,7 +4,7 @@ save_path =
 port = 53843
 basic_notifier = 0
 show_icon = 1
-language = en
+language = auto
 
 [info]
 version = 1.5.2
