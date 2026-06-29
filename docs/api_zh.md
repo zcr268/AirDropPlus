@@ -1,6 +1,6 @@
 # API
 
-[English](api.md) | [← 返回 README](../readme_zh.md)
+[English](api.md) | [← 返回 README](readme_zh.md)
 
 ## 0. 请求头参数
 | 参数名          | 类型   | 说明                                                                                              |
