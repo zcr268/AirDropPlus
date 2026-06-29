@@ -5,7 +5,8 @@ import traceback
 
 import flask
 from flask import Flask, request, Blueprint, stream_with_context
-from flask_babel import Babel, gettext as _
+
+from i18n import _
 
 from config import Config
 from notifier import Notifier
@@ -35,15 +36,9 @@ class Server:
         self.register_settings()
         self.app = Flask(__name__, template_folder='templates')
         self.app.register_blueprint(self.blueprint)
-        
-        # Initialize Babel
-        self.babel = Babel(self.app)
-        
-        def get_locale():
-            # Try to get language from config, default to 'en'
-            return self.config.language if hasattr(self.config, 'language') else 'en'
-            
-        self.babel.init_app(self.app, locale_selector=get_locale)
+
+        # 让 Jinja 模板可直接使用 _()；翻译器由 i18n 全局维护，随配置切换语言即时生效。
+        self.app.jinja_env.globals['_'] = _
 
     def check_localhost(self, client_ip):
         allowed_ips = ['127.0.0.1', '::1']
@@ -122,7 +117,7 @@ class Server:
             """ 电脑端发送文件 """
             path = file_path_decode(path)
             if path is None:
-                self.notifier.notify("⚠️" + _("Error："), _("Error: File path parsing error"))
+                self.notifier.notify("⚠️" + _("Error:"), _("Error: File path parsing error"))
                 return
             basename = os.path.basename(path)
             with open(path, 'rb') as f:

@@ -6,7 +6,7 @@ import subprocess
 
 import utils
 import clipboard
-from flask_babel import gettext as _
+from i18n import _
 
 
 class Notifier:

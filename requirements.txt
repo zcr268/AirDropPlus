@@ -1,5 +1,5 @@
 flask==3.0.0
-flask-babel==4.0.0
+Babel==2.14.0  # 仅构建期需要：pybabel extract/update/compile
 pillow==10.1.0
 pystray==0.19.5
 pyinstaller==6.2.0
