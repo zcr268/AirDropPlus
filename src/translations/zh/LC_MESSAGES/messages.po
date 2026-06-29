@@ -209,3 +209,9 @@ msgstr "端口 %(old)s 已被占用，已改为 %(new)s。\n请同步修改 iPho
 
 msgid "No available port found"
 msgstr "未找到可用端口"
+
+msgid "Invalid setting"
+msgstr "设置无效"
+
+msgid "OK"
+msgstr "确定"

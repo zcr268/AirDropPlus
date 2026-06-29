@@ -227,9 +227,8 @@ class Server:
             if localhost_result is not None:
                 return localhost_result
             config_dict = request.json
-            update_state = self.config.update(config_dict)
-            if update_state is not None:
-                self.notifier.notify("⚙️ " + _("Settings"), _("Configuration save failed:") + update_state[0].json['msg'])
-                return update_state
-            self.notifier.notify("⚙️ " + _("Settings"), _("Configuration saved"))
+            error = self.config.update(config_dict)
+            if error is not None:
+                # 校验失败：不弹桌面通知，由设置页弹框提示
+                return Result.error(msg=error)
             return Result.success(data=config_dict)

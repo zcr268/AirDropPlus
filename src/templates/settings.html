@@ -324,6 +324,48 @@
             transform: translateX(-50%) translateY(0);
         }
         .toast.error { background: var(--danger); color: #fff; }
+        /* modal dialog */
+        .modal-mask {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+            z-index: 2000;
+        }
+        .modal-mask.show { opacity: 1; pointer-events: auto; }
+        .modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 380px;
+            padding: 24px;
+            transform: translateY(10px) scale(0.98);
+            transition: transform .2s;
+        }
+        .modal-mask.show .modal { transform: translateY(0) scale(1); }
+        .modal-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            color: var(--text);
+        }
+        .modal-message {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0 0 22px;
+            line-height: 1.55;
+            word-break: break-word;
+        }
+        .modal-actions { display: flex; justify-content: flex-end; }
+        .modal-actions button { padding: 9px 22px; font-size: 14px; }
     </style>
     <script>
         // Apply saved theme before paint to avoid flashing
@@ -426,16 +468,22 @@
                     </label>
                 </div>
             </div>
-
-            <div class="actions">
-                <button type="button" onclick="saveSettings()">{{ _('Save') }}</button>
-            </div>
         </form>
     </div>
     <div id="toast" class="toast"></div>
+    <div id="modalMask" class="modal-mask">
+        <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle">
+            <h2 class="modal-title" id="modalTitle">{{ _('Invalid setting') }}</h2>
+            <p class="modal-message" id="modalMessage"></p>
+            <div class="modal-actions">
+                <button type="button" onclick="closeModal()">{{ _('OK') }}</button>
+            </div>
+        </div>
+    </div>
     <script>
         let toastTimer = null;
-        let currentLanguage = null;
+        // 最近一次成功保存的配置，用于校验失败时回退出错字段
+        let savedConfig = null;
         function showToast(message, isError) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -444,6 +492,17 @@
             clearTimeout(toastTimer);
             toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
         }
+
+        function showModal(message) {
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('modalMask').classList.add('show');
+        }
+        function closeModal() {
+            document.getElementById('modalMask').classList.remove('show');
+        }
+        document.getElementById('modalMask').addEventListener('click', (e) => {
+            if (e.target.id === 'modalMask') closeModal();
+        });
 
         window.addEventListener('load', getSettings);
 
@@ -460,25 +519,103 @@
         });
         applyTheme(localStorage.getItem('adp-theme') || 'auto');
 
+        // 从表单读取单个字段的当前值
+        function readField(field) {
+            switch (field) {
+                case 'key': return document.getElementById('key').value;
+                case 'port': return document.getElementById('port').value;
+                case 'save_path': return document.getElementById('savePath').value;
+                case 'basic_notifier': return document.getElementById('basicNotifier').checked;
+                case 'show_icon': return document.getElementById('showIcon').checked;
+                case 'language': return document.getElementById('language').value;
+            }
+        }
+
+        // 把单个字段的值写回表单
+        function writeField(field, value) {
+            switch (field) {
+                case 'key': document.getElementById('key').value = value; break;
+                case 'port': document.getElementById('port').value = value; break;
+                case 'save_path': document.getElementById('savePath').value = value; break;
+                case 'basic_notifier': document.getElementById('basicNotifier').checked = value; break;
+                case 'show_icon': document.getElementById('showIcon').checked = value; break;
+                case 'language': document.getElementById('language').value = value; break;
+            }
+        }
+
         function getSettings() {
             fetch('/settings/configs')
               .then(response => response.json())
               .then(data => {
                     if (data.success) {
-                        const config = data.data;
-                        document.getElementById('key').value = config.key;
-                        document.getElementById('port').value = config.port;
-                        document.getElementById('savePath').value = config.save_path;
-                        document.getElementById('basicNotifier').checked = config.basic_notifier;
-                        document.getElementById('showIcon').checked = config.show_icon;
-                        document.getElementById('language').value = config.language || 'auto';
-                        currentLanguage = config.language || 'auto';
+                        savedConfig = {
+                            key: data.data.key,
+                            port: data.data.port,
+                            save_path: data.data.save_path,
+                            basic_notifier: data.data.basic_notifier,
+                            show_icon: data.data.show_icon,
+                            language: data.data.language || 'auto'
+                        };
+                        Object.keys(savedConfig).forEach(f => writeField(f, savedConfig[f]));
+                        bindAutoSave();
                     }
                 })
               .catch(error => {
                     console.error('{{ _("Error getting configuration") }}:', error);
                     showToast('{{ _("Error getting configuration") }}', true);
                 });
+        }
+
+        // 自动保存单个字段：只提交该字段，校验失败时弹框并回退该字段到上次有效值
+        function saveField(field) {
+            const value = readField(field);
+            // 值没变则跳过，避免离焦时的重复提交
+            if (savedConfig && savedConfig[field] === value) return Promise.resolve();
+
+            const payload = {};
+            payload[field] = value;
+
+            return fetch('/settings/configs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    savedConfig[field] = value;
+                    if (field === 'language') {
+                        // 语言已变更，刷新页面让服务端用新语言重新渲染
+                        location.reload();
+                        return;
+                    }
+                    showToast('{{ _("Settings saved!") }}', false);
+                } else {
+                    // 校验失败：回退该字段到上次成功保存的值并弹框提示
+                    if (savedConfig) writeField(field, savedConfig[field]);
+                    showModal(data.msg || '{{ _("Failed to save settings") }}');
+                }
+            })
+            .catch(error => {
+                console.error('{{ _("Error saving settings") }}');
+                if (savedConfig) writeField(field, savedConfig[field]);
+                showToast('{{ _("Error saving settings") }}', true);
+            });
+        }
+
+        // 绑定自动保存事件：文本框离焦(change)、选择器/开关切换(change)
+        function bindAutoSave() {
+            const map = {
+                key: 'key',
+                port: 'port',
+                savePath: 'save_path',
+                language: 'language',
+                basicNotifier: 'basic_notifier',
+                showIcon: 'show_icon'
+            };
+            Object.keys(map).forEach(id => {
+                document.getElementById(id).addEventListener('change', () => saveField(map[id]));
+            });
         }
 
         function generateKey() {
@@ -492,6 +629,7 @@
                 key += charset[randomValues[i] % charset.length];
             }
             document.getElementById('key').value = key;
+            saveField('key');
         }
 
         function browseFolder() {
@@ -500,63 +638,13 @@
               .then(data => {
                     if (data.success && data.data && data.data.path) {
                         document.getElementById('savePath').value = data.data.path;
+                        saveField('save_path');
                     }
                 })
               .catch(error => {
                     console.error('{{ _("Error selecting folder") }}:', error);
                     showToast('{{ _("Error selecting folder") }}', true);
                 });
-        }
-
-        function saveSettings() {
-            const key = document.getElementById('key').value;
-            const port = document.getElementById('port').value;
-            const savePath = document.getElementById('savePath').value;
-            const basicNotifier = document.getElementById('basicNotifier').checked;
-            const showIcon = document.getElementById('showIcon').checked;
-            const language = document.getElementById('language').value;
-
-            if (!key || !port || !savePath) {
-                showToast('{{ _("Please fill in all settings") }}', true);
-                return;
-            }
-
-            const settingsData = {
-                key: key,
-                port: port,
-                save_path: savePath,
-                basic_notifier: basicNotifier,
-                show_icon: showIcon,
-                language: language
-            };
-
-            fetch('/settings/configs', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(settingsData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('{{ _("Network response error") }}');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    if (language !== currentLanguage) {
-                        // 语言已变更，刷新页面让服务端用新语言重新渲染
-                        location.reload();
-                        return;
-                    }
-                    showToast('{{ _("Settings saved!") }}', false);
-                } else {
-                    showToast('{{ _("Failed to save settings") }}: ' + data.msg, true);
-                }
-            })
-            .catch(error => {
-                console.error('{{ _("Error saving settings") }}');
-                showToast('{{ _("Error saving settings") }}', true);
-            });
         }
     </script>
 </body>

@@ -209,3 +209,9 @@ msgstr "Порт %(old)s занят, изменён на %(new)s.\nОбнови�
 
 msgid "No available port found"
 msgstr "Доступный порт не найден"
+
+msgid "Invalid setting"
+msgstr "Недопустимая настройка"
+
+msgid "OK"
+msgstr "OK"

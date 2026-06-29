@@ -158,3 +158,9 @@ msgstr "Port %(old)s is in use, changed to %(new)s.\nPlease update the port in y
 
 msgid "No available port found"
 msgstr "No available port found"
+
+msgid "Invalid setting"
+msgstr "Invalid setting"
+
+msgid "OK"
+msgstr "OK"
