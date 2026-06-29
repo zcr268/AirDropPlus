@@ -1,10 +1,29 @@
+# IDE / 编辑器
 .idea/
+.vscode/
+
+# 构建产物
 /src/build/
 /src/dist/
 *.spec
+
+# Python
 __pycache__/
-.vscode/
-*.mo
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# 虚拟环境
+.venv/
+venv/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# 翻译 .mo 为编译产物，但运行时直接依赖、且体积小，故纳入版本库便于 clone 即用。
+# （由 .po 经 pybabel compile 生成，见 src/build.py）
 
 # 用户本地配置（含隐私数据），仅跟踪 config.ini.example 模板
 src/config/config.ini
