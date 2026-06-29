@@ -194,3 +194,6 @@ msgstr "选择文件夹出错"
 
 msgid "Generate random key"
 msgstr "生成随机密钥"
+
+msgid "Follow system"
+msgstr "跟随系统"

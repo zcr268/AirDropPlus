@@ -194,3 +194,6 @@ msgstr "Ошибка выбора папки"
 
 msgid "Generate random key"
 msgstr "Сгенерировать случайный ключ"
+
+msgid "Follow system"
+msgstr "Следовать системе"

@@ -361,6 +361,7 @@
                     </div>
                     <div class="control">
                         <select id="language" name="language">
+                            <option value="auto">{{ _('Follow system') }}</option>
                             <option value="en">English</option>
                             <option value="ru">Русский</option>
                             <option value="zh">中文</option>
@@ -470,8 +471,8 @@
                         document.getElementById('savePath').value = config.save_path;
                         document.getElementById('basicNotifier').checked = config.basic_notifier;
                         document.getElementById('showIcon').checked = config.show_icon;
-                        document.getElementById('language').value = config.language || 'en';
-                        currentLanguage = config.language || 'en';
+                        document.getElementById('language').value = config.language || 'auto';
+                        currentLanguage = config.language || 'auto';
                     }
                 })
               .catch(error => {

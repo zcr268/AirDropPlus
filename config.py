@@ -1,8 +1,10 @@
 import configparser
 import os
 from result import Result
-from utils import is_port_in_use
+from utils import is_port_in_use, get_system_language
 from flask_babel import gettext as _
+
+SUPPORTED_LANGUAGES = ['en', 'ru', 'zh']
 
 class Config:
     def __init__(self, config_path):
@@ -21,9 +23,17 @@ class Config:
         self.version = self.config.get('info', 'version')
         
         # Add language configuration
-        if not self.config.has_option('config', 'language'):
-            self.config.set('config', 'config', 'en')
-        self.language = self.config.get('config', 'language')
+        # language_setting 为配置中的原始值（可能是 'auto'，表示跟随系统），用于前端回显；
+        # language 为实际生效语言（en/ru/zh），供 babel 渲染使用。
+        # 'auto' / 空 / 缺失 时按操作系统语言解析（无法匹配则默认英文），但不覆盖配置里的 'auto'。
+        lang = self.config.get('config', 'language', fallback='auto')
+        if lang in ('', None):
+            lang = 'auto'
+        self.language_setting = lang
+        if lang == 'auto':
+            self.language = get_system_language(SUPPORTED_LANGUAGES, default='en')
+        else:
+            self.language = lang
 
     def update(self, data):
         if not os.path.exists(data['save_path']):
@@ -48,6 +58,11 @@ class Config:
         self.port = data['port']
         self.basic_notifier = data['basic_notifier']
         self.show_icon = data['show_icon']
-        self.language = data['language']
+        # 保留原始设定（可能是 auto），并解析出实际生效语言
+        self.language_setting = data['language']
+        if data['language'] == 'auto':
+            self.language = get_system_language(SUPPORTED_LANGUAGES, default='en')
+        else:
+            self.language = data['language']
 
         self.config.write(open(self.config_path, 'w', encoding='utf-8'))

@@ -143,3 +143,6 @@ msgstr "Error selecting folder"
 
 msgid "Generate random key"
 msgstr "Generate random key"
+
+msgid "Follow system"
+msgstr "Follow system"

@@ -1,4 +1,5 @@
 import base64
+import locale
 import os
 import re
 import socket
@@ -49,3 +50,31 @@ def get_local_ip():
         return local_ip
     except Exception:
         return None
+
+
+def get_system_language(supported_languages, default='en'):
+    """匹配操作系统语言，无法匹配时返回 default。
+
+    supported_languages: 支持的语言代码列表，如 ['en', 'ru', 'zh']
+    """
+    try:
+        lang_code = locale.getlocale()[0] or locale.getdefaultlocale()[0]
+    except Exception:
+        lang_code = None
+    if not lang_code:
+        return default
+    # 形如 'zh_CN' / 'Chinese (Simplified)_China' / 'en_US'，取主语言部分
+    primary = lang_code.replace('-', '_').split('_')[0].lower().strip()
+    # 已是标准语言代码
+    if primary in supported_languages:
+        return primary
+    # Windows 上可能返回英文语言全称，按前缀匹配
+    alias = {
+        'chinese': 'zh',
+        'russian': 'ru',
+        'english': 'en',
+    }
+    for name, code in alias.items():
+        if primary.startswith(name) and code in supported_languages:
+            return code
+    return default

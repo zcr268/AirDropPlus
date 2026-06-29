@@ -194,7 +194,7 @@ class Server:
                 'basic_notifier': self.config.basic_notifier,
                 'show_icon': self.config.show_icon,
                 'version': self.config.version,
-                'language': self.config.language,
+                'language': self.config.language_setting,
             }
             return Result.success(data=config_dict)
 
