@@ -1,6 +1,5 @@
 import os
 import signal
-import subprocess
 import sys
 import time
 
@@ -41,11 +40,6 @@ def create_icon():
         icon.stop()
         os.kill(os.getpid(), signal.SIGINT)
 
-    def on_edit_config(icon, item):
-        with app.app_context():
-            notifier.notify(_('AirDrop Plus'), _('Edit complete, please save and restart AirDrop Plus'))
-        subprocess.Popen(["notepad", config_file_path])
-    
     def on_web_config(icon, item):
         url = f"http://localhost:{config.port}/settings"
         try:
@@ -58,8 +52,7 @@ def create_icon():
 
     with app.app_context():
         menu = (
-            MenuItem(text=_('Configuration file'), action=on_edit_config),
-            MenuItem(text=_('Web configuration'), action=on_web_config),
+            MenuItem(text=_('Settings'), action=on_web_config),
             MenuItem(text=_('Exit'), action=on_exit),
         )
         image = Image.open(os.path.join(SCRIPT_DIR, 'static', 'icon.ico'))

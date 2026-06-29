@@ -48,7 +48,7 @@ python build.py
       <img src="pic/network.png" alt="Image" style="width: 35%;">
     </div>
 3. Set up AirdropPlus
-    - Right click on the tray icon and open the web configration with settings.
+    - Right click on the tray icon and open Settings to configure.
 4. Get the shortcut on your iPhone.
    version: 1.5.4
    https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e

@@ -12,12 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Configuration file"
-msgstr "配置文件"
-
-msgid "Web configuration"
-msgstr "网页配置"
-
 msgid "Exit"
 msgstr "退出"
 

@@ -13,14 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: AirDropPlus.py
-msgid "Configuration file"
-msgstr ""
-
-#: AirDropPlus.py
-msgid "Web configuration"
-msgstr ""
-
-#: AirDropPlus.py
 msgid "Exit"
 msgstr ""
 

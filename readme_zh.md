@@ -48,7 +48,7 @@ python build.py
       <img src="pic/network.png" alt="Image" style="width: 35%;">
     </div>
 3. 设置 AirdropPlus
-    - 右键托盘图标，打开网页设置进行配置
+    - 右键托盘图标，打开设置进行配置
 4. 在 iPhone 上获取快捷指令
    version: 1.5.4
    https://www.icloud.com/shortcuts/c499c9a3d9b04e189cce38d9560b3e2e
