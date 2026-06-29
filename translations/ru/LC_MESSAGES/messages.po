@@ -163,4 +163,22 @@ msgid "Copy"
 msgstr "Копировать"
 
 msgid "Clipboard setting error"
-msgstr "Ошибка настройки буфера обмена" 
+msgstr "Ошибка настройки буфера обмена"
+
+msgid "General"
+msgstr "Общие"
+
+msgid "Notification & Appearance"
+msgstr "Уведомления и внешний вид"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "System"
+msgstr "Системная"
+
+msgid "Light"
+msgstr "Светлая"
+
+msgid "Dark"
+msgstr "Тёмная" 

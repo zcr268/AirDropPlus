@@ -112,4 +112,22 @@ msgid "Failed to save settings"
 msgstr "Failed to save settings"
 
 msgid "Error saving settings"
-msgstr "Error saving settings" 
+msgstr "Error saving settings"
+
+msgid "General"
+msgstr "General"
+
+msgid "Notification & Appearance"
+msgstr "Notification & Appearance"
+
+msgid "Theme"
+msgstr "Theme"
+
+msgid "System"
+msgstr "System"
+
+msgid "Light"
+msgstr "Light"
+
+msgid "Dark"
+msgstr "Dark" 

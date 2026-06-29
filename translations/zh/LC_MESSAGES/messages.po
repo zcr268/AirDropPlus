@@ -163,4 +163,22 @@ msgid "Copy"
 msgstr "复制"
 
 msgid "Clipboard setting error"
-msgstr "剪贴板设置错误" 
+msgstr "剪贴板设置错误"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Notification & Appearance"
+msgstr "通知与外观"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "System"
+msgstr "跟随系统"
+
+msgid "Light"
+msgstr "浅色"
+
+msgid "Dark"
+msgstr "深色" 
