@@ -119,13 +119,11 @@ If your PC can't be reached via `hostname.local`, use its IP address instead. Fi
 
 <div align="center"><img src="docs/images/shortcut_conf_2.png" alt="Shortcut IP configuration" width="35%"></div>
 
-### 6. Choose a trigger method (pick one)
+### 6. Add the shortcut to Control Center
 
-1. **Back Tap** — *Settings → Accessibility → Touch → Back Tap*, trigger by double-tapping the back of the iPhone.
-2. **Action Button** — iPhone 15 Pro and later can trigger via the side Action Button.
-   <div align="center"><img src="docs/images/action_button.png" alt="Action button" width="35%"></div>
-3. **Control Center** — newer iOS versions can add the 'AirDrop Plus' shortcut to Control Center.
-   <div align="center"><img src="docs/images/control_centor.png" alt="Control Center" width="35%"></div>
+Add the 'AirDrop Plus' shortcut to Control Center.
+
+<div align="center"><img src="docs/images/control_centor.png" alt="Control Center" width="35%"></div>
 
 ### 7. Lift the file-count limit
 

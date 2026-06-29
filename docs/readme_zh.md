@@ -119,13 +119,11 @@ Bonjour 让你通过 `hostname.local` 而非 IP 地址访问 PC。最新版 Bonj
 
 <div align="center"><img src="images/shortcut_conf_2.png" alt="快捷指令 IP 配置" width="35%"></div>
 
-### 6. 选择触发方式（三选一）
+### 6. 添加到控制中心
 
-1. **轻点背面** —— *设置 → 辅助功能 → 触控 → 轻点背面*，双击手机背面触发。
-2. **操作按钮** —— iPhone 15 Pro 及更新机型可通过侧边操作按钮触发。
-   <div align="center"><img src="images/action_button.png" alt="操作按钮" width="35%"></div>
-3. **控制中心** —— 新版 iOS 可将 'AirDrop Plus' 快捷指令添加到控制中心。
-   <div align="center"><img src="images/control_centor.png" alt="控制中心" width="35%"></div>
+将 'AirDrop Plus' 快捷指令添加到控制中心。
+
+<div align="center"><img src="images/control_centor.png" alt="控制中心" width="35%"></div>
 
 ### 7. 解除文件数量限制
 
