@@ -200,3 +200,12 @@ msgstr "Сгенерировать случайный ключ"
 
 msgid "Follow system"
 msgstr "Следовать системе"
+
+msgid "Port changed"
+msgstr "Порт изменён"
+
+msgid "Port %(old)s is in use, changed to %(new)s.\nPlease update the port in your iPhone Shortcut settings."
+msgstr "Порт %(old)s занят, изменён на %(new)s.\nОбновите порт в настройках быстрой команды на iPhone."
+
+msgid "No available port found"
+msgstr "Доступный порт не найден"

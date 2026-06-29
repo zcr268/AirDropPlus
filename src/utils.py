@@ -41,6 +41,20 @@ def is_port_in_use(port):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         return s.connect_ex(('localhost', port)) == 0
 
+def find_available_port(start_port, max_tries=100):
+    """从 start_port 起向上查找一个未被占用的端口，端口范围限定在 1024-65535。
+
+    找不到时返回 None。
+    """
+    port = max(start_port, 1024)
+    for _ in range(max_tries):
+        if port > 65535:
+            break
+        if not is_port_in_use(port):
+            return port
+        port += 1
+    return None
+
 def get_local_ip():
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

@@ -200,3 +200,12 @@ msgstr "生成随机密钥"
 
 msgid "Follow system"
 msgstr "跟随系统"
+
+msgid "Port changed"
+msgstr "端口已更换"
+
+msgid "Port %(old)s is in use, changed to %(new)s.\nPlease update the port in your iPhone Shortcut settings."
+msgstr "端口 %(old)s 已被占用，已改为 %(new)s。\n请同步修改 iPhone 快捷指令中设置的端口。"
+
+msgid "No available port found"
+msgstr "未找到可用端口"

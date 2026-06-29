@@ -149,3 +149,12 @@ msgstr "Generate random key"
 
 msgid "Follow system"
 msgstr "Follow system"
+
+msgid "Port changed"
+msgstr "Port changed"
+
+msgid "Port %(old)s is in use, changed to %(new)s.\nPlease update the port in your iPhone Shortcut settings."
+msgstr "Port %(old)s is in use, changed to %(new)s.\nPlease update the port in your iPhone Shortcut settings."
+
+msgid "No available port found"
+msgstr "No available port found"

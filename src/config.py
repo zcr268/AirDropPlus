@@ -69,3 +69,9 @@ class Config:
         i18n.set_language(self.language)
 
         self.config.write(open(self.config_path, 'w', encoding='utf-8'))
+
+    def save_port(self, port):
+        """仅更新并持久化端口，用于启动时自动换端口的场景。"""
+        self.port = port
+        self.config.set('config', 'port', str(port))
+        self.config.write(open(self.config_path, 'w', encoding='utf-8'))
