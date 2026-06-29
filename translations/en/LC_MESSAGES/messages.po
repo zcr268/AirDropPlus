@@ -131,3 +131,6 @@ msgstr "Light"
 
 msgid "Dark"
 msgstr "Dark" 
+
+msgid "If Windows notifications do not work, enable the basic notification style."
+msgstr "If Windows notifications do not work, enable the basic notification style."

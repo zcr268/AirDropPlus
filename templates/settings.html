@@ -141,6 +141,59 @@
             margin-top: 3px;
         }
         .row-desc.warn { color: var(--danger); }
+        /* info tooltip */
+        .info-tip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            margin-left: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            color: var(--card-bg);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: help;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        .info-tip .info-bubble {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            width: max-content;
+            max-width: 240px;
+            padding: 8px 12px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 12.5px;
+            font-weight: 400;
+            line-height: 1.45;
+            text-align: left;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .18s, transform .18s;
+            z-index: 100;
+        }
+        .info-tip .info-bubble::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--text);
+        }
+        .info-tip:hover .info-bubble,
+        .info-tip:focus .info-bubble {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
         .row.stacked {
             flex-direction: column;
             align-items: stretch;
@@ -314,7 +367,7 @@
                 <div class="card-title">{{ _('Notification & Appearance') }}</div>
                 <div class="row">
                     <div class="row-text">
-                        <label class="row-label" for="basicNotifier">{{ _('Basic Notification Style') }}</label>
+                        <label class="row-label" for="basicNotifier">{{ _('Basic Notification Style') }}<span class="info-tip" tabindex="0">i<span class="info-bubble">{{ _('If Windows notifications do not work, enable the basic notification style.') }}</span></span></label>
                         <div class="row-desc warn">{{ _('Requires restart to take effect') }}</div>
                     </div>
                     <label class="switch">

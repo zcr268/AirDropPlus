@@ -182,3 +182,6 @@ msgstr "浅色"
 
 msgid "Dark"
 msgstr "深色" 
+
+msgid "If Windows notifications do not work, enable the basic notification style."
+msgstr "如果 Windows 通知不生效，请开启基本通知样式。"
